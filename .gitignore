@@ -77,5 +77,10 @@ Plugins/*/Intermediate/*
 DerivedDataCache/*
 
 Build/Windows/*
-Plugins/SkyPlugin/
+
+# This is for symbolic folder links
+Plugins/SkyPlugin
 Plugins/TimePluginDev
+# This is for normal folders
+Plugins/SkyPlugin/
+Plugins/TimePluginDev/

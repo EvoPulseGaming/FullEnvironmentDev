@@ -46,7 +46,7 @@
 // 	//virtual void OnConstruction(const FTransform& Transform) override;
 // 
 // 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Calendar")
-// 	ATimeManager* TimeManager;
+// 	ATimeManagerOLD* TimeManager;
 // 
 // 	//UPROPERTY(BlueprintReadOnly, Category = "Calendar")
 // 	//FTimeDate CurrentTime;

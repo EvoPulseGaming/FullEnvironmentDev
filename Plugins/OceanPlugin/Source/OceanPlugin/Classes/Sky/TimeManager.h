@@ -26,7 +26,7 @@
 
 //An actor based calendar system for tracking date + time, and Sun/Moon rotation/phase.
 UCLASS(BlueprintType)
-class ATimeManager : public AActor
+class ATimeManagerOLD : public AActor
     {
 	GENERATED_UCLASS_BODY()
 

@@ -21,12 +21,12 @@
 #include "Sky/TimeManager.h"
 #include "Kismet/KismetMathLibrary.h"
 
-ATimeManager::ATimeManager(const class FObjectInitializer& PCIP) : Super(PCIP)
+ATimeManagerOLD::ATimeManagerOLD(const class FObjectInitializer& PCIP) : Super(PCIP)
     {
 	PrimaryActorTick.bCanEverTick = true;
     }
 
-void ATimeManager::InitializeCalendar(FTimeDate time)
+void ATimeManagerOLD::InitializeCalendar(FTimeDate time)
     {
 	time = ValidateTimeDate(time);
 
@@ -55,7 +55,7 @@ void ATimeManager::InitializeCalendar(FTimeDate time)
 	bIsCalendarInitialized = true;
     }
 
-FTimeDate ATimeManager::ValidateTimeDate(FTimeDate time)
+FTimeDate ATimeManagerOLD::ValidateTimeDate(FTimeDate time)
     {
 	time.Year = FMath::Clamp(time.Year, 1, 9999);
 	time.Month = FMath::Clamp(time.Month, 1, 12);
@@ -72,37 +72,37 @@ FTimeDate ATimeManager::ValidateTimeDate(FTimeDate time)
 
 // Float versions
 
-float ATimeManager::SinD(float input)
+float ATimeManagerOLD::SinD(float input)
     {
 	return FMath::Sin((PI / 180.0f) * input);
     }
 
-float ATimeManager::ASinD(float input)
+float ATimeManagerOLD::ASinD(float input)
     {
 	return (180.0f / PI) * FMath::Asin(input);
     }
 
-float ATimeManager::CosD(float input)
+float ATimeManagerOLD::CosD(float input)
     {
 	return FMath::Cos((PI / 180.0f) * input);
     }
 
-float ATimeManager::ACosD(float input)
+float ATimeManagerOLD::ACosD(float input)
     {
 	return (180.0f / PI) * FMath::Acos(input);
     }
 
-float ATimeManager::TanD(float input)
+float ATimeManagerOLD::TanD(float input)
     {
 	return FMath::Tan((PI / 180.0f) * input);
     }
 
-float ATimeManager::ATanD(float input)
+float ATimeManagerOLD::ATanD(float input)
     {
 	return (180.0f / PI) * FMath::Atan(input);
     }
 
-float ATimeManager::ATan2D(float A, float B)
+float ATimeManagerOLD::ATan2D(float A, float B)
     {
 	return (180.f / PI) * FMath::Atan2(A, B);
     }
@@ -110,37 +110,37 @@ float ATimeManager::ATan2D(float A, float B)
 
 // Double versions
 
-double ATimeManager::SinD(double input)
+double ATimeManagerOLD::SinD(double input)
     {
 	return sin((PI / 180.0) * input);
     }
 
-double ATimeManager::ASinD(double input)
+double ATimeManagerOLD::ASinD(double input)
     {
 	return (180.0 / PI) * asin(input);
     }
 
-double ATimeManager::CosD(double input)
+double ATimeManagerOLD::CosD(double input)
     {
 	return cos((PI / 180.0) * input);
     }
 
-double ATimeManager::ACosD(double input)
+double ATimeManagerOLD::ACosD(double input)
     {
 	return (180.0 / PI) * acos(input);
     }
 
-double ATimeManager::TanD(double input)
+double ATimeManagerOLD::TanD(double input)
     {
 	return tan((PI / 180.0) * input);
     }
 
-double ATimeManager::ATanD(double input)
+double ATimeManagerOLD::ATanD(double input)
     {
 	return (180.0 / PI) * atan(input);
     }
 
-double ATimeManager::ATan2D(double A, double B)
+double ATimeManagerOLD::ATan2D(double A, double B)
     {
 	return (180.0 / PI) * atan2(A, B);
     }
@@ -148,12 +148,12 @@ double ATimeManager::ATan2D(double A, double B)
 
 
 
-FTimeDate ATimeManager::ConvertToTimeDate(FDateTime dt)
+FTimeDate ATimeManagerOLD::ConvertToTimeDate(FDateTime dt)
     {
 	return FTimeDate(dt.GetYear(), dt.GetMonth(), dt.GetDay(), dt.GetHour(), dt.GetMinute(), dt.GetSecond(), dt.GetMillisecond());
     }
 
-FDateTime ATimeManager::ConvertToDateTime(FTimeDate td)
+FDateTime ATimeManagerOLD::ConvertToDateTime(FTimeDate td)
     {
 	return FDateTime(td.Year, td.Month, td.Day, td.Hour, td.Minute, td.Second, td.Millisecond);
     }
@@ -161,7 +161,7 @@ FDateTime ATimeManager::ConvertToDateTime(FTimeDate td)
 
 /* --- Time of Day --- */
 
-float ATimeManager::GetElapsedDayInMinutes()
+float ATimeManagerOLD::GetElapsedDayInMinutes()
     {
 	if (!bIsCalendarInitialized)
 	    {
@@ -172,7 +172,7 @@ float ATimeManager::GetElapsedDayInMinutes()
     }
 
 
-void ATimeManager::IncrementTime(float deltaTime)
+void ATimeManagerOLD::IncrementTime(float deltaTime)
     {
 	if (!bIsCalendarInitialized)
 	    {
@@ -195,7 +195,7 @@ void ATimeManager::IncrementTime(float deltaTime)
     }
 
 
-void ATimeManager::SetCurrentLocalTime(float time)
+void ATimeManagerOLD::SetCurrentLocalTime(float time)
     {
 	float minute = FMath::Frac(time / 60) * 60;
 	float second = FMath::Frac(minute) * 60;
@@ -207,25 +207,25 @@ void ATimeManager::SetCurrentLocalTime(float time)
     }
 
 
-int32 ATimeManager::GetDaysInYear(int32 year)
+int32 ATimeManagerOLD::GetDaysInYear(int32 year)
     {
 	return FDateTime::DaysInYear(year);
     }
 
 
-int32 ATimeManager::GetDaysInMonth(int32 year, int32 month)
+int32 ATimeManagerOLD::GetDaysInMonth(int32 year, int32 month)
     {
 	return FDateTime::DaysInMonth(year, month);
     }
 
 
-int32 ATimeManager::GetDayOfYear(FTimeDate time)
+int32 ATimeManagerOLD::GetDayOfYear(FTimeDate time)
     {
 	return ConvertToDateTime(time).GetDayOfYear();
     }
 
 
-float ATimeManager::GetDayPhase()
+float ATimeManagerOLD::GetDayPhase()
     {
 	if (!bIsCalendarInitialized)
 	    {
@@ -236,7 +236,7 @@ float ATimeManager::GetDayPhase()
     }
 
 
-float ATimeManager::GetYearPhase()
+float ATimeManagerOLD::GetYearPhase()
     {
 	if (!bIsCalendarInitialized)
 	    {
@@ -247,7 +247,7 @@ float ATimeManager::GetYearPhase()
     }
 
 
-bool ATimeManager::IsLeapYear(int32 year)
+bool ATimeManagerOLD::IsLeapYear(int32 year)
     {
 	bool isLeap = false;
 
@@ -260,7 +260,7 @@ bool ATimeManager::IsLeapYear(int32 year)
 
 
 
-FRotator ATimeManager::CalculateSunAngle()
+FRotator ATimeManagerOLD::CalculateSunAngle()
     {
 	if (!bIsCalendarInitialized)
 	    {
@@ -304,7 +304,7 @@ FRotator ATimeManager::CalculateSunAngle()
 
 
 
-FRotator ATimeManager::CalculateMoonAngle()
+FRotator ATimeManagerOLD::CalculateMoonAngle()
     {
 	if (!bIsCalendarInitialized)
 	    {
@@ -377,7 +377,7 @@ FRotator ATimeManager::CalculateMoonAngle()
     }
 
 
-float ATimeManager::CalculateMoonPhase()
+float ATimeManagerOLD::CalculateMoonPhase()
     {
 	// Last time Lunar year start = solar year start:
 	double elapsed = InternalTime.GetJulianDay() - JD1900;
@@ -395,7 +395,7 @@ float ATimeManager::CalculateMoonPhase()
 /* ------------------------------------------------------- */
 
 
-// FRotator ATimeManager::CalculateMoonAngle()
+// FRotator ATimeManagerOLD::CalculateMoonAngle()
 // {
 // 	double lct = (InternalTime + SpanUTC).GetTimeOfDay().GetTotalHours();
 // 	double elapsedDays = InternalTime.GetJulianDay() - JD2000;  // T
@@ -510,7 +510,7 @@ float ATimeManager::CalculateMoonPhase()
 
 
 
-// FRotator ATimeManager::CalculateMoonAngle()
+// FRotator ATimeManagerOLD::CalculateMoonAngle()
 // {
 // 	double lct = InternalTime.GetTimeOfDay().GetTotalMinutes();
 // 	double elapsed = InternalTime.GetJulianDay() + (lct / 1440) - JD2000; // -0.5) -1;
@@ -582,7 +582,7 @@ float ATimeManager::CalculateMoonPhase()
 // }
 
 
-// FRotator ATimeManager::CalculateMoonAngle()
+// FRotator ATimeManagerOLD::CalculateMoonAngle()
 // {
 // 	ElapsedJD1900 = (InternalTime.GetJulianDay() - JD1900) / 36525;
 // 	double actualEcObl = EcObliquity - (0.0130125 * ElapsedJD1900) - (0.00000164 * pow(ElapsedJD1900, 2)) - (0.000000503 * pow(ElapsedJD1900, 3));
@@ -651,7 +651,7 @@ float ATimeManager::CalculateMoonPhase()
 
 // UN-Modified Original
 
-// 	FRotator ATimeManager::CalculateMoonAngle()
+// 	FRotator ATimeManagerOLD::CalculateMoonAngle()
 // 	{
 // 		double lct = InternalTime.GetTimeOfDay().GetTotalMinutes();
 // 		double elapsed = ((InternalTime.GetJulianDay() - 1) + (lct / 1440)) - (JD2000 - 0.5);

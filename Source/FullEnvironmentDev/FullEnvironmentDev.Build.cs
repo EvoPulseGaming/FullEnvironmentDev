@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class OceanProject : ModuleRules
+public class FullEnvironmentDev : ModuleRules
 {
-	public OceanProject(ReadOnlyTargetRules Target) : base(Target)
+	public FullEnvironmentDev(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
 

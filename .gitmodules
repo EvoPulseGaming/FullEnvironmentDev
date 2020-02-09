@@ -1,0 +1,9 @@
+[submodule "Plugins/ComputeShaderDev"]
+	path = Plugins/ComputeShaderDev
+	url = https://github.com/UE4-OceanProject/ComputeShaderDev
+[submodule "Plugins/TimePluginDev"]
+	path = Plugins/TimePluginDev
+	url = https://github.com/UE4-OceanProject/TimePluginDev
+[submodule "Plugins/SkyPluginDev"]
+	path = Plugins/SkyPluginDev
+	url = https://github.com/UE4-OceanProject/SkyPluginDev

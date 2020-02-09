@@ -78,11 +78,4 @@ DerivedDataCache/*
 
 Build/Windows/*
 
-# This is for symbolic folder links
-Plugins/SkyPlugin
-Plugins/SkyPluginDev
-Plugins/TimePluginDev
-# This is for normal folders
-Plugins/SkyPlugin/
-Plugins/TimePluginDev/
 

@@ -1,0 +1,32 @@
+GlassBeaverToday at 9:13 PM
+@EvoPulseGaming 
+struct FWarpInConfig
+{
+    float4 WarpInDirection;
+    float ExitSpeed;
+    float WarpInSpeed;
+
+    float Padding0;
+    float Padding1;
+};
+
+StructuredBuffer<FWarpInConfig> InNewWarpInConfig;//: register(t1);
+...InNewWarpInConfig[0].WarpInDirection...
+this works for me
+in the usf
+void FShipWarpInCS_AddRemoveShip::SetInNewWarpInConfig(FRHICommandList& RHICmdList, FShaderResourceViewRHIRef SRV)
+{
+    FComputeShaderRHIParamRef ComputeShaderRHI = GetComputeShader();
+
+    if (InNewWarpInConfig.IsBound())
+        RHICmdList.SetShaderResourceViewParameter(ComputeShaderRHI, InNewWarpInConfig.GetBaseIndex(), SRV);
+}
+shipWarpInCS_AddRemoveShip->SetInNewWarpInConfig(RHICmdList, NewWarpInConfig_SRV);
+FShaderResourceViewRHIRef NewWarpInConfig_SRV;
+            NewWarpInConfigDataBuffer = RHICreateStructuredBuffer(sizeof(FWarpInConfig), sizeof(FWarpInConfig) * MAX_SHIPS, BUF_ShaderResource | BUF_Dynamic, emptyCreateInfo);
+            NewWarpInConfig_SRV = RHICreateShaderResourceView(NewWarpInConfigDataBuffer);
+                        // upload new warp-in data to the GPU
+                        bufData = RHICmdList.LockStructuredBuffer(NewWarpInConfigDataBuffer, 0, 1 * sizeof(FWarpInConfig), EResourceLockMode::RLM_WriteOnly);
+                        FMemory::Memcpy(bufData, &warpInConfig.GetData()[i], 1 * sizeof(FWarpInConfig));
+                        RHICmdList.UnlockStructuredBuffer(NewWarpInConfigDataBuffer);
+I think  that's it

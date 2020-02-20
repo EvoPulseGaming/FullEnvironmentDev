@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "VolumetricCloudsPainter",
+	"Description": "Simple volumetric clouds painter for a volumetric clouds assets.",
+	"Category": "Other",
+	"CreatedBy": "deBug",
+	"CreatedByURL": "https://www.artstation.com/debug",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "VolumetricCloudsPainter",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	]
+}

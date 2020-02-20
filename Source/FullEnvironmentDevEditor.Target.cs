@@ -7,6 +7,7 @@ public class FullEnvironmentDevEditorTarget : TargetRules
 {
 	public FullEnvironmentDevEditorTarget(TargetInfo Target) : base(Target)
 	{
+		DefaultBuildSettings = BuildSettingsVersion.V2;
 		Type = TargetType.Editor;
 		ExtraModuleNames.AddRange( new string[] { "FullEnvironmentDev" } );
 	}
